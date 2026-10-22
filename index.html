@@ -1,0 +1,766 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SAPIENET MEAT 시연용 목업</title>
+<style>
+:root{--blue:#1565e8;--navy:#0a2a66;--red:#e5484d;--orange:#f76b15;--green:#14a04f;--bg:#f3f5f9;--card:#fff;--line:#e2e7ef;--text:#1b2233;--sub:#6c7689;--mute:#c4cad6}
+*{box-sizing:border-box}
+body{margin:0;font-family:"Malgun Gothic","맑은 고딕",system-ui,sans-serif;background:var(--bg);color:var(--text);font-size:13px}
+a{color:inherit;text-decoration:none}
+/* 공통 헤더 */
+.top{background:#fff;border-bottom:1px solid var(--line);padding:10px 16px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.logo{font-weight:900;font-size:17px;color:var(--navy);white-space:nowrap}.logo b{color:#14a04f}
+.logo small{display:block;font-size:9px;color:var(--sub);font-weight:600;letter-spacing:.3px}
+.search{flex:1;min-width:220px;display:flex;border:2px solid var(--blue);border-radius:6px;overflow:hidden;max-width:620px}
+.search input{flex:1;border:0;padding:8px 10px;font-size:12px;outline:none;font-family:inherit}
+.search button{border:0;background:var(--blue);color:#fff;padding:0 16px;cursor:pointer}
+.utils{display:flex;gap:14px;align-items:center;color:var(--sub);font-size:11px}
+.utils .ic{text-align:center;position:relative;cursor:default}
+.badge{position:absolute;top:-6px;right:-8px;background:var(--red);color:#fff;border-radius:9px;font-size:9px;padding:0 4px;font-weight:700}
+.user{font-weight:700;color:var(--text);font-size:12px}
+nav.menu{background:#fff;border-bottom:1px solid var(--line);display:flex;align-items:center;padding:0 12px;overflow-x:auto}
+nav.menu .tabs{display:flex}
+nav.menu .tabs a{padding:12px 13px;white-space:nowrap;font-weight:600;color:#333;border-bottom:3px solid transparent}
+nav.menu .tabs a.on{color:var(--blue);border-bottom-color:var(--blue);background:#eef4ff}
+nav.menu .roles{margin-left:auto;display:flex;gap:6px;padding:6px 0}
+.role{border:1px solid var(--blue);color:var(--blue);background:#fff;border-radius:6px;padding:5px 9px;font-size:11px;font-weight:700;cursor:pointer;white-space:nowrap}
+.role.supp{border-color:#14a04f;color:#14a04f}
+.role.on{background:var(--blue);color:#fff}.role.supp.on{background:#14a04f;color:#fff}
+main{max-width:1240px;margin:0 auto;padding:14px 16px 30px}
+/* 배너 */
+.banner{background:linear-gradient(90deg,#0a2a66,#1d4fa8);color:#fff;border-radius:10px;padding:14px 18px;display:flex;align-items:center;gap:14px;margin-bottom:14px;flex-wrap:wrap}
+.banner .num{background:#1f7ef5;font-weight:900;font-size:22px;border-radius:6px;padding:6px 12px;min-width:56px;text-align:center}
+.banner h1{margin:0;font-size:21px}
+.banner .bsub{font-size:12px;color:#d6e4ff;margin-top:3px}
+.banner .quote{margin-left:auto;font-style:italic;font-size:12px;color:#d6e4ff;text-align:right}
+/* 공통 블록 */
+.grid{display:grid;gap:12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px}
+.card h3{margin:0 0 10px;font-size:14px}
+.sub{color:var(--sub);font-size:11px}
+.kpi{font-size:21px;font-weight:800;color:var(--navy)}
+.red{color:var(--red)}.green{color:var(--green)}.blue{color:var(--blue)}
+.btn{display:inline-block;border:0;border-radius:6px;padding:8px 12px;background:var(--blue);color:#fff;font-weight:700;cursor:pointer;font-size:12px;font-family:inherit;text-align:center}
+.btn.ghost{background:#fff;color:var(--blue);border:1px solid var(--blue)}
+.btn.orange{background:var(--orange)}.btn.green{background:var(--green)}.btn.dark{background:var(--navy)}
+.btn.sm{padding:4px 8px;font-size:11px}
+.btn:disabled{background:#c9ced9;color:#fff;cursor:not-allowed}
+.tag{display:inline-block;font-size:10px;padding:2px 6px;border-radius:4px;background:#e8efff;color:var(--blue);margin:0 3px 3px 0;white-space:nowrap}
+.tag.r{background:#ffe6e6;color:var(--red)}.tag.g{background:#e3f7ea;color:var(--green)}.tag.o{background:#fff0e3;color:var(--orange)}.tag.y{background:#fff7d1;color:#8a6100}
+.pill{display:inline-block;font-size:11px;padding:3px 9px;border-radius:12px;background:#eef1f6;color:#444;cursor:pointer;margin:2px}
+.pill.on{background:var(--blue);color:#fff}
+.meat{width:100%;aspect-ratio:4/3;border-radius:8px;background:linear-gradient(135deg,#c93c4a,#7a1822);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;text-align:center;padding:6px;font-size:12px}
+.meat.b{background:linear-gradient(135deg,#d9a08a,#a85b47)}.meat.c{background:linear-gradient(135deg,#b8323f,#5e1019)}.meat.d{background:linear-gradient(135deg,#e8c3b0,#c28b75)}.meat.g{background:linear-gradient(135deg,#8aa98a,#4a6b4a)}
+table{width:100%;border-collapse:collapse}
+th,td{border-bottom:1px solid var(--line);padding:7px 6px;text-align:left;font-size:12px;vertical-align:middle}
+th{background:#f0f3f9;font-weight:700}
+input,select,textarea{border:1px solid #cdd5e2;border-radius:6px;padding:7px 8px;font-size:12px;font-family:inherit;width:100%;background:#fff}
+label.l{font-size:11px;color:var(--sub);display:block;margin:8px 0 4px;font-weight:600}
+.row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.spacer{flex:1}
+.bar{height:9px;background:#e9edf5;border-radius:5px;overflow:hidden;flex:1}.bar i{display:block;height:100%;background:var(--blue)}
+.note{font-size:11px;color:#7a5a00;background:#fff8dc;border:1px dashed #e0b43c;border-radius:6px;padding:6px 8px;margin-top:8px}
+.steps{display:flex;align-items:center;gap:6px;background:#fff;border:1px solid var(--line);border-radius:10px;padding:12px;margin-bottom:12px;flex-wrap:wrap}
+.step{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--sub)}
+.step .c{width:26px;height:26px;border-radius:50%;background:#dfe5ef;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800}
+.step.on{color:var(--text);font-weight:700}.step.on .c{background:var(--blue)}.step.done .c{background:var(--green)}
+.arrow{color:var(--mute);margin:0 4px}
+.qlinks{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px}
+.qlinks a{background:#fff;border:1px solid var(--line);border-radius:10px;padding:12px;display:block}
+.qlinks a:hover{border-color:var(--blue)}
+.hero{border-radius:10px;padding:22px;color:#fff;background:linear-gradient(110deg,#0a2a66 45%,#1f5fbf);min-height:200px;display:flex;flex-direction:column;justify-content:center}
+.hero h2{margin:0 0 8px;font-size:24px;line-height:1.3}
+.imgfake{background:linear-gradient(120deg,#7c1721,#c4424d 50%,#5e1019);border-radius:10px;min-height:180px}
+.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:#222;color:#fff;padding:10px 16px;border-radius:8px;opacity:0;transition:.25s;pointer-events:none;font-size:12px;z-index:9}
+.toast.show{opacity:.95}
+.chart{display:flex;align-items:flex-end;gap:10px;height:150px;padding-top:10px;border-bottom:1px solid var(--line)}
+.chart div{flex:1;text-align:center;font-size:10px;color:var(--sub)}
+.chart i{display:block;background:#8fb8f7;border-radius:4px 4px 0 0;margin:0 auto 4px;width:70%}
+.chart i.hi{background:var(--blue)}
+.donut{width:150px;height:150px;border-radius:50%;margin:auto;position:relative}
+.donut::after{content:attr(data-c);position:absolute;inset:38px;background:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:12px;text-align:center;color:var(--navy)}
+.stat{background:#fff;border:1px solid var(--line);border-radius:10px;padding:12px}
+footer{text-align:center;color:var(--sub);font-size:11px;padding:18px}
+@media (max-width:760px){.banner .quote{display:none}.grid.two,.grid.three,.grid.four{grid-template-columns:1fr!important}}
+</style>
+</head>
+<body>
+
+<div class="top">
+  <div class="logo">🐂 SAPIENET <b>MEAT</b><small>CONDITION-TO-TRADE MARKET</small></div>
+  <div class="search"><input id="q" placeholder="원하는 고기, 부위를 검색해 보세요. (예: 한우 등심 1kg, 삼겹살, 업소용 등)"><button onclick="go('products')">🔍</button></div>
+  <div class="utils">
+    <div class="ic">🕘<br>최근본상품</div>
+    <div class="ic" onclick="go('cart')" style="cursor:pointer">🛒<span class="badge">3</span><br>장바구니</div>
+    <div class="ic">🔔<span class="badge">12</span><br>알림</div>
+    <div class="user">홍길동님 ▾</div>
+  </div>
+</div>
+
+<nav class="menu">
+  <div class="tabs" id="tabs"></div>
+  <div class="roles">
+    <button class="role" id="r-buyer" onclick="go('mypage')">👤 개인 구매자</button>
+    <button class="role" id="r-biz" onclick="go('business')">👤 사업자 구매자</button>
+    <button class="role supp" id="r-supp" onclick="go('supplier')">👤 공급자 담당자</button>
+  </div>
+</nav>
+
+<main id="app"></main>
+<footer>SAPIENET MEAT · 시연용 목업 · 예시 데이터 · 결제·주문·정산은 동작하지 않으며 어떤 정보도 저장되지 않습니다</footer>
+<div class="toast" id="toast"></div>
+
+<script>
+/* ===== 예시 데이터 ===== */
+const PRODUCTS = [
+  {id:1,name:"한우 등심 1kg",sub:"마블링이 좋은 프리미엄 등심",price:62000,unit:"1kg",origin:"한우",tags:["한우","냉장","구이용"],cls:"",badge:"한우"},
+  {id:2,name:"한돈 삼겹살 1kg",sub:"국내산 한돈, 선선한 삼겹살",price:18900,unit:"1kg",origin:"한돈",tags:["한돈","냉장","구이용"],cls:"b",badge:"한돈"},
+  {id:3,name:"호주산 갈비살 1kg",sub:"쫄깃한 식감의 프리미엄 갈비살",price:28900,unit:"1kg",origin:"호주산",tags:["호주산","냉장","구이용"],cls:"c",badge:"호주산"},
+  {id:4,name:"닭가슴살 1kg",sub:"담백하고 신선한 닭가슴살",price:12900,unit:"1kg",origin:"국내산",tags:["국내산","냉장","다이어트"],cls:"d",badge:"국내산"},
+  {id:5,name:"우삼겹 1kg",sub:"고소한 맛의 수입산 우삼겹",price:19800,unit:"1kg",origin:"수입육",tags:["미국산","냉동","구이용"],cls:"c",badge:"수입육"},
+  {id:6,name:"한돈 목살 1kg",sub:"풍부한 육즙의 국내산 목살",price:16900,unit:"1kg",origin:"한돈",tags:["한돈","냉장","구이용"],cls:"b",badge:"한돈"},
+  {id:7,name:"한우 국거리 500g",sub:"진한 국물 맛의 한우 국거리",price:24900,unit:"500g",origin:"한우",tags:["한우","냉장","국거리용"],cls:"",badge:"한우"},
+  {id:8,name:"한돈 불고기 1kg",sub:"얇게 썰어 양념에 좋은 불고기용",price:15900,unit:"1kg",origin:"한돈",tags:["한돈","냉장","불고기"],cls:"d",badge:"한돈"}
+];
+const ORDERS_BUYER = [
+  {no:"202410200001",date:"2024. 10. 20 (월) 14:32",name:"한우 등심 1kg",qty:2,price:124000,st:0,tag:"일반주문"},
+  {no:"202410180045",date:"2024. 10. 18 (금) 11:20",name:"한돈 삼겹살 500g",qty:3,price:56700,st:4,tag:"배송완료"},
+  {no:"202410120067",date:"2024. 10. 12 (토) 16:03",name:"닭가슴살 2kg",qty:1,price:12900,st:4,tag:"배송완료"}
+];
+const REQS = [
+  {id:"R-101",title:"한우 등심 1++ 100kg 정기 납품",who:"사업자 구매자",qty:"100kg",price:"희망 kg당 60,000원 이하",due:"2026-10-25",status:"공급자 응답 중",offers:3},
+  {id:"R-102",title:"삼겹살 업소용 10kg 주 1회",who:"식당 사업자",qty:"10kg / 주 1회",price:"희망 kg당 17,000원 이하",due:"2026-10-30",status:"수정제안 도착",offers:1},
+  {id:"R-103",title:"무항생제 닭가슴살 2kg 반복 구매",who:"개인 구매자",qty:"2kg / 월 1회",price:"협의",due:"2026-11-12",status:"조건 협의 중",offers:2}
+];
+const STEP_SET = ["장바구니","주문/결제","주문완료"];
+
+/* ===== 메모리 상태 (새로고침 시 초기화, 저장 없음) ===== */
+const S = {cart:[{id:1,qty:2},{id:2,qty:1},{id:3,qty:1}], tabs:{}, votes:{}, role:"buyer", pick:"", pay:"card", reqPicked:"A", priceMode:"price"};
+
+/* ===== 유틸 ===== */
+const $ = id => document.getElementById(id);
+const won = n => (typeof n==="number" ? n.toLocaleString("ko-KR")+"원" : n);
+function toast(m){const t=$("toast");t.textContent=m;t.classList.add("show");clearTimeout(t._h);t._h=setTimeout(()=>t.classList.remove("show"),1800);}
+function go(r){ if(location.hash==="#"+r) render(); else location.hash=r; }
+function setTab(k,v){S.tabs[k]=v;render();}
+function meat(cls,label,h){return `<div class="meat ${cls||""}" style="${h?`aspect-ratio:${h}`:""}">${label||""}</div>`;}
+function banner(n,title,sub){return `<div class="banner"><span class="num">${n}</span><div><h1>${title}</h1><div class="bsub">${sub}</div></div><div class="quote">“좋은 고기가 좋은 거래를 만듭니다.”</div></div>`;}
+function steps(arr,cur){return `<div class="steps">${arr.map((s,i)=>`<span class="step ${i<cur?"done":i===cur?"on":""}"><span class="c">${i<cur?"✓":i+1}</span>${s}</span>${i<arr.length-1?'<span class="arrow">›</span>':""}`).join("")}</div>`;}
+function dis(label){return `<button class="btn" disabled title="시연용: 실제 거래·결제는 동작하지 않습니다">${label}</button>`;}
+
+/* ===== 공통 상단 탭 ===== */
+const TABS = [["home","홈"],["products","상품"],["requestNew","조건요청"],["cart","주문 · 결제"],["mypage","내 구매실"],["supplier","내 공급실"],["requests","거래 제안 광장"],["newproduct","신상품 제안 · 개발"],["analysis","데이터 분석"],["help","고객센터"]];
+const TAB_OF = {home:"home",products:"products",product:"products",cart:"cart",mypage:"mypage",business:"mypage",external:"mypage",rights:"mypage",analysis:"analysis",supplier:"supplier",requestNew:"requestNew",requests:"requests",requestDetail:"requests",newproduct:"newproduct",help:"help"};
+function renderChrome(route){
+  const cur = TAB_OF[route]||"home";
+  $("tabs").innerHTML = TABS.map(([k,l])=>`<a href="#${k}" class="${cur===k?"on":""}">${l}</a>`).join("");
+  $("r-buyer").className = "role"+(route==="mypage"||route==="external"||route==="rights"?" on":"");
+  $("r-biz").className = "role"+(route==="business"?" on":"");
+  $("r-supp").className = "role supp"+(route==="supplier"||route==="newproduct"?" on":"");
+}
+
+/* ===== S01 통합 홈 ===== */
+function V_home(){return `
+${banner("01","통합 홈 (메인 화면)","사피에넷 미트의 모든 서비스를 한 화면에서 시작하는 맞춤형 첫 화면")}
+<div class="grid" style="grid-template-columns:2fr 1fr">
+  <div class="hero">
+    <div class="sub" style="color:#cfe2ff">SAPIENET MEAT</div>
+    <h2>좋은 고기가<br><span style="color:#8fd3a6">좋은 거래를 만듭니다.</span></h2>
+    <div style="margin-bottom:14px">원하는 조건의 고기를 만나고, 더 나은 거래를 만들어보세요.</div>
+    <div class="row"><a class="btn" href="#products">고기 바로 구매하기 →</a><a class="btn" href="#requestNew" style="background:#fff;color:var(--navy)">원하는 조건 요청하기 →</a></div>
+  </div>
+  <div class="card">
+    <h3>지금, 이런 고기가 많이 거래되고 있어요</h3>
+    <div class="grid" style="grid-template-columns:1fr 1fr">${PRODUCTS.slice(0,4).map(p=>`<div>${meat(p.cls,"",null).replace('class="meat','style="height:70px" class="meat')}<div style="font-weight:700;margin-top:4px">${p.name.replace(/ \\d.*$/,"")}</div><div class="red" style="font-weight:800">${won(p.price)}</div></div>`).join("")}</div>
+  </div>
+</div>
+<div class="grid four" style="grid-template-columns:repeat(5,1fr);margin:12px 0">
+  <a class="card" href="#products"><h3>🔍 상품 찾기</h3><div class="sub">필요한 고기 바로 구매</div></a>
+  <a class="card" href="#requestNew"><h3>📝 조건 요청하기</h3><div class="sub">원하는 조건의 고기 요청</div></a>
+  <a class="card" href="#requests"><h3>🤝 거래 제안 광장</h3><div class="sub">새로운 거래 기회 확인</div></a>
+  <a class="card" href="#external"><h3>🧾 기록 등록하기</h3><div class="sub">구매기록·영수증 등록</div></a>
+  <a class="card" href="#analysis"><h3>📊 내 고기 경제실</h3><div class="sub">구매기록·분석·낮지</div></a>
+</div>
+<div class="grid" style="grid-template-columns:1.3fr 1fr">
+  <div class="card">
+    <h3>오늘의 거래 현황 <span class="sub">2024. 10. 20 기준 (예시)</span></h3>
+    <div class="grid four" style="grid-template-columns:repeat(4,1fr)">
+      <div class="stat"><div class="sub">전체 거래액</div><div class="kpi">4,320,000원</div><div class="red" style="font-size:11px">전일 대비 ▲ 8%</div></div>
+      <div class="stat"><div class="sub">거래 건수</div><div class="kpi">152건</div><div class="blue" style="font-size:11px">전일 대비 ▼ 5%</div></div>
+      <div class="stat"><div class="sub">신규 상품 등록</div><div class="kpi">287건</div><div class="sub">이번주 ▲ 12건</div></div>
+      <div class="stat"><div class="sub">조건 요청 등록</div><div class="kpi">19건</div><div class="sub">이번주 ▲ 7건</div></div>
+    </div>
+    <h3 style="margin-top:14px">나에게 맞는 추천 상품 <span class="pill on">개인 추천</span><span class="pill">사업자 추천</span><span class="pill">조건맞춤 추천</span></h3>
+    <div class="grid four" style="grid-template-columns:repeat(4,1fr)">${PRODUCTS.slice(4,8).map(p=>`<a href="#product/${p.id}">${meat(p.cls,"",null).replace('class="meat','style="height:80px" class="meat')}<div style="font-weight:700;margin-top:4px;font-size:12px">${p.name}</div><div class="red" style="font-weight:800;font-size:12px">${won(p.price)}</div></a>`).join("")}</div>
+  </div>
+  <div class="card">
+    <h3>내 빠른 메뉴</h3>
+    <div class="qlinks" style="grid-template-columns:1fr 1fr">
+      <a href="#mypage"><b>주문내역</b><div class="sub">최근 주문 3건</div></a>
+      <a href="#requests"><b>견적 요청 현황</b><div class="sub">진행중 2건</div></a>
+      <a href="#requests"><b>내 거래 제안</b><div class="sub">확인할 제안 5건</div></a>
+      <a href="#mypage"><b>찜한 상품</b><div class="sub">저장한 상품 12개</div></a>
+    </div>
+    <h3 style="margin-top:14px">알림</h3>
+    <div style="font-size:12px;line-height:2"><span class="red">●</span> 새로운 견적이 도착했습니다. (2건) <span class="sub">3시간 전</span><br><span style="color:#e89b00">●</span> 주문이 배송되었습니다. <span class="sub">5시간 전</span><br><span class="green">●</span> 관심상품 가격이 변경되었습니다. <span class="sub">10시간 전</span><br><span class="blue">●</span> 새로운 조건 요청이 등록되었습니다. <span class="sub">1일 전</span></div>
+  </div>
+</div>
+<div class="grid three" style="grid-template-columns:repeat(3,1fr);margin-top:12px">
+  <div class="card" style="background:#f0f6ff"><b>조건에 맞는 거래를 찾아보세요</b><div class="sub" style="margin:4px 0 8px">거래 제안 광장에서 다른 사람의 제안을 확인</div><a class="btn sm" href="#requests">거래 제안 광장 바로가기 →</a></div>
+  <div class="card" style="background:#fff5ec"><b>우리 가게 원가 관리 지금 시작하세요</b><div class="sub" style="margin:4px 0 8px">구매기록을 모으면 분석이 시작됩니다</div><a class="btn sm orange" href="#mypage">사업자 구매실 바로가기 →</a></div>
+  <div class="card" style="background:#f7f1ff"><b>새로운 상품을 등록하고 판매하세요</b><div class="sub" style="margin:4px 0 8px">공급자는 상품·재고를 직접 관리</div><a class="btn sm" style="background:#7a4cd6" href="#supplier">공급자실 바로가기 →</a></div>
+</div>`;}
+
+/* ===== S02 상품 목록 ===== */
+function V_products(){
+  const q=($("q")?.value||"").trim();
+  const list=PRODUCTS.filter(p=>!q||p.name.includes(q)||p.tags.some(t=>t.includes(q)));
+  return `
+${banner("02","상품 목록","원하는 고기를 검색하고 조건에 맞게 탐색하는 실제 구매 출발 화면")}
+<div class="grid" style="grid-template-columns:240px 1fr">
+  <div class="card" style="align-self:start">
+    <div class="row"><h3 style="margin:0">상품 필터</h3><span class="spacer"></span><button class="btn ghost sm">초기화</button></div>
+    <label class="l">① 축종</label>
+    <div>${[["한우","156"],["한돈","287"],["수입육","412"],["닭고기","68"],["기타","29"]].map(([a,b])=>`<span class="pill">${a} (${b})</span>`).join("")}</div>
+    <label class="l">② 부위</label>
+    <div>${["등심(112)","삼겹살(98)","목살(86)","갈비살(64)","우삼겹(72)"].map(a=>`<span class="pill">${a}</span>`).join("")}</div>
+    <label class="l">③ 원산지</label>
+    <div>${["국내산(312)","호주산(128)","미국산(94)","스페인산(37)","기타(23)"].map(a=>`<span class="pill">${a}</span>`).join("")}</div>
+    <label class="l">④ 상태</label><div><span class="pill on">☑ 냉장 (542)</span><span class="pill">냉동 (286)</span><span class="pill">신선육 (54)</span></div>
+    <label class="l">⑤ 용도</label><div>${["구이용(348)","찜·조림용(126)","국거리용(98)","불고기용(87)","업소용(213)"].map(a=>`<span class="pill">${a}</span>`).join("")}</div>
+    <label class="l">⑥ 가격 (원)</label><div class="row"><input placeholder="최소 금액"><span>~</span><input placeholder="최대 금액"></div>
+    <label class="l">⑦ 중량</label><div><span class="pill">전체</span><span class="pill on">1kg</span><span class="pill">500g 이하</span><span class="pill">2kg</span><span class="pill">5kg 이상</span></div>
+    <button class="btn" style="width:100%;margin-top:12px" onclick="toast('시연용: 필터 결과는 예시 목록으로 표시됩니다')">🔍 선택한 조건으로 검색하기</button>
+  </div>
+  <div>
+    <div class="row" style="margin-bottom:8px"><span class="sub">홈 › 상품 목록</span><span class="spacer"></span><span class="sub">정렬</span><select style="width:auto"><option>추천순</option><option>가격 낮은순</option><option>가격 높은순</option></select></div>
+    <div class="row" style="margin-bottom:10px"><b style="font-size:18px">전체 상품 <span class="blue">923개</span></b></div>
+    <div class="row" style="margin-bottom:10px">${["전체","한우","한돈","수입육","닭고기","기타"].map((t,i)=>`<span class="pill ${i===0?"on":""}">${t}</span>`).join("")}</div>
+    <div class="grid" style="grid-template-columns:repeat(4,1fr)">${list.map(p=>`
+      <div class="card" style="padding:10px">
+        <a href="#product/${p.id}">${meat(p.cls,"",null).replace('class="meat','style="height:110px" class="meat')}</a>
+        <div style="font-weight:800;margin-top:6px">${p.name}</div>
+        <div class="sub">${p.sub}</div>
+        <div class="red" style="font-weight:800;font-size:15px;margin:4px 0">${won(p.price)} <span class="sub" style="font-weight:400">/ ${p.unit}</span></div>
+        <div>${p.tags.map(t=>`<span class="tag">${t}</span>`).join("")}</div>
+        <div class="row" style="margin-top:6px"><button class="btn sm" onclick="addCart(${p.id})">🛒 장바구니</button><button class="btn ghost sm" onclick="toast('시연용: 관심상품 표시')">♡ 관심상품</button></div>
+      </div>`).join("") || `<div class="card">검색 결과가 없습니다.</div>`}</div>
+  </div>
+</div>`;}
+
+/* ===== S03 상품 상세 ===== */
+function V_product(id){
+  const p=PRODUCTS.find(x=>x.id==id)||PRODUCTS[0];
+  return `
+<div class="sub" style="margin-bottom:8px">🏠 › 상품 › ${p.origin} › ${p.name}</div>
+${banner("03","상품 상세","상품의 가격, 규격, 상태, 비교 정보까지 확인하고 주문 또는 조건 요청으로 이어지는 화면")}
+<div class="grid" style="grid-template-columns:1.1fr 1fr 260px">
+  <div>
+    ${meat("",`${p.name}`,"4/3").replace('class="meat','style="min-height:300px" class="meat')}
+    <div class="row" style="margin-top:8px">${[0,1,2,3,4].map(i=>`<div class="meat ${["","b","c","d",""][i]}" style="width:70px;aspect-ratio:1;font-size:9px;border:${i===0?"2px solid var(--blue)":"0"}"></div>`).join("")}</div>
+    <div class="card" style="margin-top:12px">
+      <div class="row" style="gap:14px;font-size:12px;flex-wrap:wrap"><b>상품 설명</b><span class="sub">규격/원산지 안내</span><span class="sub">배송안내</span><span class="sub">후기 (356)</span><span class="sub">관련 상품</span></div>
+      <p style="font-size:12px;line-height:1.7;margin:8px 0">풍부한 마블링과 부드러운 식감의 최고급 한우 등심입니다. 엄선된 한우만 선별하여 신선하게 공급하며, 진공포장으로 신선도를 유지합니다.</p>
+      <div class="row">${["풍부한 마블링","부드러운 식감","고소한 풍미","구이용 추천"].map(t=>`<span class="tag">${t}</span>`).join("")}</div>
+    </div>
+  </div>
+  <div>
+    <div class="row"><span class="tag">${p.origin}</span></div>
+    <h2 style="margin:6px 0 4px;font-size:22px">${p.name}</h2>
+    <div class="sub">${p.sub}</div>
+    <div style="margin:8px 0"><span class="orange">★ 4.8</span> <span class="sub">(356건의 후기) · 월간 거래 1,240건</span></div>
+    <div class="red" style="font-size:26px;font-weight:900">${won(p.price)} <span class="sub" style="font-size:12px">(500g 124,000원/kg)</span></div>
+    <label class="l" style="margin-top:12px">중량 선택</label>
+    <div class="grid three" style="grid-template-columns:repeat(3,1fr)">${[["300g","37,200원"],["500g","62,000원"],["1kg","124,000원"]].map(([a,b],i)=>`<div class="card" style="padding:8px;text-align:center;${i===1?"border-color:var(--blue);background:#eef4ff":""}"><b>${a}</b><div class="red" style="font-weight:800">${b}</div></div>`).join("")}</div>
+    <table style="margin-top:12px">
+      <tr><th style="width:90px">원산지</th><td>국내산 (한우)</td></tr>
+      <tr><th>등급</th><td>1++ (투플러스)</td></tr>
+      <tr><th>보관 상태</th><td>냉장 (0~5°C)</td></tr>
+      <tr><th>포장 방식</th><td>진공포장 (산소차단 포장)</td></tr>
+      <tr><th>배송 정보</th><td>평일 14시 이전 주문 시 당일 출고 · 배송 안내</td></tr>
+      <tr><th>공급사</th><td>사피에넷 미트 직영 · 사업자 인증 ✔</td></tr>
+      <tr><th>재고 현황</th><td class="green">충분 (500g 기준 120팩 이상)</td></tr>
+      <tr><th>상품코드</th><td>SM001234</td></tr>
+    </table>
+  </div>
+  <div>
+    <div class="card">
+      <label class="l">수량</label>
+      <div class="row"><button class="btn ghost sm" onclick="qtyStep(-1)">−</button><input id="pq" value="1" style="width:70px;text-align:center"><button class="btn ghost sm" onclick="qtyStep(1)">+</button></div>
+      <button class="btn" style="width:100%;margin-top:12px" onclick="addCart(${p.id}, +$('pq').value)">🛒 장바구니 담기</button>
+      <button class="btn dark" style="width:100%;margin-top:6px" onclick="addCart(${p.id}, +$('pq').value); go('cart')">⚡ 바로 구매</button>
+      <button class="btn orange" style="width:100%;margin-top:6px" onclick="go('requestNew')">📄 조건요청하기</button>
+      <button class="btn ghost" style="width:100%;margin-top:6px" onclick="toast('시연용: 비교 목록에 추가되었습니다')">📊 비교하기</button>
+      <button class="btn ghost" style="width:100%;margin-top:6px" onclick="toast('시연용: 관심상품에 저장 표시')">♡ 관심상품 저장</button>
+    </div>
+    <div class="card" style="margin-top:10px;background:#f0fbf3">
+      <b>사업자 대량 구매 문의</b>
+      <div class="sub" style="margin:4px 0 8px">대량 구매 시 더 좋은 조건으로 거래할 수 있습니다.</div>
+      <a class="btn green sm" href="#requestNew">사업자 조건 문의하기 →</a>
+    </div>
+  </div>
+</div>`;}
+function qtyStep(d){const el=$("pq");el.value=Math.max(1,(+el.value||1)+d);}
+
+/* ===== S04 장바구니 · 주문 ===== */
+function V_cart(){
+  const items=S.cart.map(c=>({...c,p:PRODUCTS.find(p=>p.id==c.id)}));
+  const sum=items.reduce((a,i)=>a+i.p.price*i.qty,0);
+  return `
+${banner("04","장바구니 · 주문","선택한 상품을 확인하고 배송·결제 정보를 입력해 실제 거래를 완료하는 화면")}
+${steps(["장바구니","주문/결제","주문완료"],1)}
+${items.length===0?`<div class="card">장바구니가 비어 있습니다. <a class="blue" href="#products">상품 보러 가기 →</a></div>`:`
+<div class="grid" style="grid-template-columns:1.25fr 1fr 1fr">
+  <div>
+    <div class="card">
+      <div class="row"><h3 style="margin:0">① 선택한 상품 (${items.length}개)</h3><span class="spacer"></span><button class="btn ghost sm">선택 삭제</button></div>
+      ${items.map(i=>`<div class="row" style="border-bottom:1px solid var(--line);padding:8px 0">
+        ${meat(i.p.cls,"",null).replace('class="meat','style="width:70px;height:70px;flex:none" class="meat')}
+        <div style="flex:1;min-width:140px"><b>${i.p.name}</b><div class="sub">${i.p.sub}</div><div>${i.p.tags.slice(0,2).map(t=>`<span class="tag">${t}</span>`).join("")}</div></div>
+        <div class="row" style="gap:4px"><button class="btn ghost sm" onclick="setQty(${i.id},${i.qty-1})">−</button><span style="min-width:22px;text-align:center">${i.qty}</span><button class="btn ghost sm" onclick="setQty(${i.id},${i.qty+1})">+</button></div>
+        <div style="text-align:right;min-width:90px"><div class="red" style="font-weight:800">${won(i.p.price*i.qty)}</div><button class="btn ghost sm" onclick="removeCart(${i.id})">삭제</button></div>
+      </div>`).join("")}
+      <div class="note">냉장/냉동 상품은 별도 포장되어 각각 배송될 수 있습니다.</div>
+    </div>
+    <div class="card" style="margin-top:12px"><h3>③ 배송 요청사항</h3><div class="sub">오전 배송 희망 · 부재 시 문 앞에 놓아주세요.</div></div>
+  </div>
+  <div>
+    <div class="card">
+      <h3>② 배송지 정보</h3>
+      <label class="l">배송지 선택</label>
+      <div class="row"><input type="radio" checked> 기본 배송지 <span class="sub">서울시 강남구 테헤란로 123, 사피에넷빌딩 5층 · 홍길동 010-1234-5678</span></div>
+      <div class="row" style="margin-top:6px"><input type="radio"> 새로운 배송지 입력</div>
+      <label class="l">수령 희망일</label><input value="2024. 10. 22 (화)">
+      <label class="l">배송 요청사항 (선택)</label><textarea rows="2" placeholder="예: 부재 시 문 앞에 놓아주세요."></textarea>
+    </div>
+    <div class="card" style="margin-top:12px">
+      <h3>④ 결제 수단</h3>
+      ${[["card","신용/체크카드"],["bank","계좌이체"],["vbank","가상계좌 (무통장입금)"],["easy","간편결제"]].map(([k,l])=>`<div class="row" style="margin:6px 0"><input type="radio" name="pay" ${S.pay===k?"checked":""} onclick="S.pay='${k}'"> ${l}</div>`).join("")}
+      <div class="note">결제 연동은 시연에서 동작하지 않습니다.</div>
+      <div class="row" style="margin-top:8px"><input type="checkbox"> 포인트 사용 <span class="sub">보유 포인트 12,500P</span></div>
+      <div class="row" style="margin-top:6px"><input type="checkbox"> 쿠폰 사용 <span class="sub">사용 가능한 쿠폰 2개</span></div>
+    </div>
+  </div>
+  <div>
+    <div class="card">
+      <h3>⑥ 결제 금액</h3>
+      <div class="row"><span>상품금액 (${items.length}개)</span><span class="spacer"></span><b>${won(sum)}</b></div>
+      <div class="row"><span>배송비</span><span class="spacer"></span>0원</div>
+      <div class="row"><span>상품 할인</span><span class="spacer"></span><span class="red">− 10,000원</span></div>
+      <div class="row"><span>쿠폰 할인</span><span class="spacer"></span><span class="red">− 2,000원</span></div>
+      <hr style="border:0;border-top:1px solid var(--line)">
+      <div class="row" style="background:#fff0f1;padding:10px;border-radius:8px"><b>총 결제금액</b><span class="spacer"></span><b class="red" style="font-size:20px">${won(sum-12000)}</b></div>
+      <div class="sub" style="margin:8px 0">주문하기 버튼을 누르면 구매 조건 및 결제 진행에 동의하는 것으로 간주됩니다.</div>
+      ${dis("🔒 주문하기")}
+      <div class="note">시연용: 주문·결제는 동작하지 않습니다.</div>
+    </div>
+    <div class="card" style="margin-top:12px">
+      <h3>⑤ 주문자 정보</h3>
+      <label class="l">주문자명</label><input value="홍길동">
+      <label class="l">연락처</label><input value="010-1234-5678">
+      <label class="l">이메일</label><input value="hong@sapienet.co.kr">
+    </div>
+  </div>
+</div>`}`;}
+function setQty(id,q){const c=S.cart.find(x=>x.id==id);if(c&&q>0){c.qty=q;render();}}
+function removeCart(id){S.cart=S.cart.filter(x=>x.id!=id);render();}
+function addCart(id,qty){qty=qty||1;const c=S.cart.find(x=>x.id==id);if(c)c.qty+=qty;else S.cart.push({id,qty});toast("장바구니에 담았습니다");}
+
+/* ===== S05 개인 구매실 ===== */
+function V_mypage(){
+  const stepLabel=["주문완료","결제완료","상품준비중","배송중","배송완료"];
+  return `
+<div class="row" style="margin-bottom:10px"><span class="pill on" onclick="go('mypage')">개인 구매실</span><span class="pill" onclick="go('business')">사업자 구매실</span><span class="pill" onclick="go('supplier')">공급자실</span></div>
+${banner("05","개인 구매실","개인 구매자가 주문 기록, 재구매, 관심상품, 알림을 한눈에 관리하는 나의 거래 공간")}
+<div class="grid" style="grid-template-columns:200px 1fr">
+  <div class="card" style="align-self:start;padding:8px">
+    <h3 style="padding:6px">🛒 내 구매실</h3>
+    ${["구매 내역","재구매 추천","관심상품","내 제안","외부 구매기록","알림 설정"].map((t,i)=>`<div style="padding:9px 10px;border-radius:6px;${i===0?"background:#eef4ff;color:var(--blue);font-weight:700":""}">${t}</div>`).join("")}
+  </div>
+  <div>
+    <div class="grid three" style="grid-template-columns:repeat(3,1fr)">
+      <div class="stat"><div class="sub">이번 달 구매횟수</div><div class="kpi">12회 <span class="red" style="font-size:12px">▲ 2회</span></div></div>
+      <div class="stat"><div class="sub">총 구매금액</div><div class="kpi">1,250,000원 <span class="red" style="font-size:12px">▲ 8%</span></div></div>
+      <div class="stat"><div class="sub">저장한 상품 수</div><div class="kpi">28개 <span class="red" style="font-size:12px">▲ 6개</span></div></div>
+    </div>
+    <div class="card" style="margin-top:12px">
+      <div class="row"><h3 style="margin:0">최근 주문 내역</h3><span class="spacer"></span><span class="sub">전체보기 ›</span></div>
+      ${ORDERS_BUYER.map(o=>`<div style="border-top:1px solid var(--line);padding:10px 0" class="row">
+        ${meat("",`${o.name}`,null).replace('class="meat','style="width:100px;height:80px;flex:none;font-size:10px" class="meat')}
+        <div style="flex:1;min-width:200px"><div class="sub">주문번호 ${o.no} · ${o.date} <span class="tag ${o.st===4?"g":""}">${o.tag}</span></div>
+          <b>${o.name}</b> <span class="red" style="font-weight:800">${won(o.price)}</span> <span class="sub">${o.qty}개</span>
+          <div class="row" style="margin-top:6px;font-size:10px;color:var(--sub)">${stepLabel.map((s,i)=>`<span style="flex:1;text-align:center;${i<=o.st?"color:var(--blue);font-weight:700":""}">● ${s}</span>`).join("")}</div>
+        </div>
+        <div class="row" style="flex-direction:column;align-items:stretch;min-width:120px"><button class="btn ghost sm">주문 상세보기</button><button class="btn sm" onclick="toast('시연용: 재주문 흐름만 표시됩니다')">🔄 재주문하기</button></div>
+      </div>`).join("")}
+    </div>
+    <div class="grid three" style="grid-template-columns:repeat(3,1fr);margin-top:12px">
+      <div class="card"><h3>찜한 상품</h3>${PRODUCTS.slice(0,4).map(p=>`<div class="row" style="font-size:11px;margin:4px 0"><span style="flex:1">${p.name}</span><b class="red">${won(p.price)}</b></div>`).join("")}</div>
+      <div class="card"><h3>나를 위한 재구매 추천</h3>${PRODUCTS.slice(4,8).map(p=>`<div class="row" style="font-size:11px;margin:4px 0"><span style="flex:1">${p.name}</span><b class="red">${won(p.price)}</b></div>`).join("")}</div>
+      <div class="card"><h3>최근 본 상품</h3>${PRODUCTS.slice(2,6).map(p=>`<div class="row" style="font-size:11px;margin:4px 0"><span style="flex:1">${p.name}</span><b class="red">${won(p.price)}</b></div>`).join("")}</div>
+    </div>
+  </div>
+</div>`;}
+
+/* ===== S06 사업자 구매실 ===== */
+function V_business(){
+  const months=[["4월",58],["5월",66],["6월",62],["7월",78],["8월",70],["9월",84],["10월",92]];
+  return `
+<div class="row" style="margin-bottom:10px"><span class="pill" onclick="go('mypage')">개인 구매실</span><span class="pill on" onclick="go('business')">사업자 구매실</span><span class="pill" onclick="go('supplier')">공급자실</span></div>
+${banner("06","사업자 구매실","식당·정육점·사업자 구매자가 발주, 원가, 재주문, 거래 현황을 관리하는 운영 화면")}
+<div class="grid" style="grid-template-columns:1.4fr 1fr">
+  <div class="grid" style="grid-template-columns:1fr">
+    <div class="hero" style="min-height:170px;background:linear-gradient(110deg,#0a2a66,#2a6bd0)"><h2 style="font-size:20px">믿을 수 있는 품질, 안정적인 납품,<br>사업자의 성공을 돕습니다.</h2><div style="margin-bottom:10px">원부터 재고 관리까지 사피에넷 미트와 함께하세요.</div><a class="btn" href="#products" style="width:max-content">바로 발주하기 →</a></div>
+    <div class="grid four" style="grid-template-columns:repeat(4,1fr)">
+      <div class="stat"><div class="sub">이번 달 구매금액</div><div class="kpi">4,320,000원</div><div class="red" style="font-size:11px">전월 대비 ▲ 8%</div></div>
+      <div class="stat"><div class="sub">발주 건수</div><div class="kpi">12건</div><div class="green" style="font-size:11px">전월 대비 ▲ 20%</div></div>
+      <div class="stat"><div class="sub">평균 단가</div><div class="kpi">18,500원/kg</div><div class="blue" style="font-size:11px">전월 대비 ▼ 3%</div></div>
+      <div class="stat"><div class="sub">자주 사는 품목</div><div style="font-weight:800;margin-top:6px">한우 등심</div><div class="sub">총 8회 구매</div></div>
+    </div>
+    <div class="card"><h3>최근 발주 내역</h3>
+      <table><tr><th>발주일</th><th>품목</th><th>수량</th><th>공급자</th><th>금액</th><th>상태</th><th></th></tr>
+        <tr><td>2024.10.20</td><td>한우 등심(스테이크)</td><td>5kg</td><td>사피에넷빌</td><td>310,000원</td><td><span class="tag">배송중</span></td><td><button class="btn ghost sm">상세</button></td></tr>
+        <tr><td>2024.10.18</td><td>한돈 삼겹살</td><td>10kg</td><td>한강축산</td><td>189,000원</td><td><span class="tag g">배송완료</span></td><td><button class="btn ghost sm">상세</button></td></tr>
+        <tr><td>2024.10.16</td><td>호주산 갈비살</td><td>5kg</td><td>글로벌미트</td><td>144,500원</td><td><span class="tag g">배송완료</span></td><td><button class="btn ghost sm">상세</button></td></tr>
+        <tr><td>2024.10.14</td><td>닭가슴살 (업소용)</td><td>20kg</td><td>새완유통</td><td>258,000원</td><td><span class="tag g">배송완료</span></td><td><button class="btn ghost sm">상세</button></td></tr>
+        <tr><td>2024.10.12</td><td>한우 국거리</td><td>10kg</td><td>지리산한우</td><td>240,000원</td><td><span class="tag">거래완료</span></td><td><button class="btn ghost sm">상세</button></td></tr>
+      </table></div>
+    <div class="card"><h3>월별 구매 추이 <span class="sub">(구매금액, 예시)</span></h3>
+      <div class="chart">${months.map(([m,v],i)=>`<div><i class="${i===6?"hi":""}" style="height:${v*1.4}px"></i>${m}</div>`).join("")}</div></div>
+  </div>
+  <div class="grid" style="grid-template-columns:1fr;align-content:start">
+    <div class="card"><h3>빠른 발주</h3>${[["한돈 삼겹살 10kg"],["한우 등심 5kg"],["닭가슴살 20kg"]].map(([n])=>`<div class="row" style="margin:6px 0"><span style="flex:1">${n}</span><button class="btn sm" onclick="toast('시연용: 발주 흐름만 표시됩니다')">바로 발주</button></div>`).join("")}</div>
+    <div class="card"><h3>반복 발주</h3>${["지난주 동일 발주","지난달 동일 발주","최근 3개월 발주"].map(t=>`<div class="pill" style="display:block;padding:8px 10px;margin:6px 0">${t} ›</div>`).join("")}</div>
+    <div class="card"><h3>견적 요청 현황</h3>${[["한우 등심 10kg","3개 견적 도착"],["한돈 목살 20kg","1개 견적 도착"],["닭가슴살 30kg","진행중"]].map(([a,b])=>`<div class="row" style="font-size:12px;margin:5px 0"><span style="flex:1">${a}</span><span class="tag ${b.includes("도착")?"r":""}">${b}</span></div>`).join("")}</div>
+    <div class="card"><h3>외부 구매기록 등록</h3><div class="sub">다른 경로에서 구매한 내역도 함께 관리하세요.</div><a class="btn" style="width:100%;margin-top:8px" href="#external">구매기록 등록하기 →</a></div>
+  </div>
+</div>`;}
+
+/* ===== S07 외부 구매기록 등록 ===== */
+function V_external(){
+  const tab=S.tabs.ext||"ocr";
+  return `
+<div class="sub" style="margin-bottom:6px">구매관리 › 외부 구매기록 등록</div>
+${banner("07","외부 구매기록 등록","다른 거래처에서 산 고기도 등록해 전체 구매 흐름과 비교 분석에 연결하는 화면")}
+<div class="row" style="margin-bottom:10px">
+  <button class="btn ${tab==="ocr"?"":"ghost"}" onclick="setTab('ext','ocr')">📷 영수증 사진 업로드 (OCR 자동 인식)</button>
+  <button class="btn ${tab==="manual"?"":"ghost"}" onclick="setTab('ext','manual')">⌨ 직접 입력 (수동 등록)</button>
+</div>
+<div class="grid" style="grid-template-columns:1fr 1.1fr 1fr">
+  <div class="card">
+    <h3>① 영수증 사진 업로드</h3>
+    <div style="border:2px dashed #9bb8e8;border-radius:10px;padding:14px;text-align:center;background:#f7faff">
+      <div style="background:#fff;border:1px solid var(--line);padding:10px;width:70%;margin:auto;font-size:9px;line-height:1.5">○○축산마트<br>서울특별시 강남구 테헤란로 123<br>한우 등심 1kg 62,000<br>한돈 삼겹살 500g 18,900<br>합계 118,900<br>2024-10-18 14:32</div>
+      <div style="margin-top:10px"><b>영수증 사진을 드래그하거나<br>여기를 클릭하여 업로드하세요.</b></div>
+      <div class="sub" style="margin-top:6px">JPG, PNG, PDF 파일 (최대 10MB)</div>
+    </div>
+    <div class="row" style="margin-top:8px"><div class="meat" style="width:60px;height:60px;aspect-ratio:auto"></div><div class="meat b" style="width:60px;height:60px;aspect-ratio:auto"></div><div class="meat c" style="width:60px;height:60px;aspect-ratio:auto"></div></div>
+  </div>
+  <div class="card">
+    <h3>② OCR 인식 결과 확인 및 수정</h3>
+    <div class="note" style="margin:0 0 8px;background:#eef4ff;border-color:#9bb8e8;color:#244">AI가 인식한 결과입니다. 실제와 다른 경우 수정해 주세요.</div>
+    <label class="l">구매처 *</label><div class="row"><input value="○○축산마트" style="flex:1"><button class="btn ghost sm">다시 인식하기</button></div>
+    <label class="l">구매일 *</label><input value="2024-10-18">
+    <label class="l">품목 *</label><input value="한우 등심">
+    <label class="l">규격 *</label><select><option>1kg</option><option>500g</option></select>
+    <label class="l">수량 *</label><div class="row"><button class="btn ghost sm">−</button><input value="1" style="width:60px;text-align:center"><button class="btn ghost sm">+</button><span class="sub">단위 kg</span></div>
+    <label class="l">금액 *</label><input value="62,000 원">
+    <label class="l">메모</label><textarea rows="3">직접 방문 구매 · 품질 상태 양호</textarea>
+    <div class="row" style="margin-top:10px"><button class="btn ghost">취소</button><span class="spacer"></span>${dis("✔ 구매기록 등록하기")}</div>
+  </div>
+  <div>
+    <div class="card">
+      <h3>③ 등록 미리보기</h3>
+      <div class="sub">아래 내용으로 구매기록이 등록됩니다.</div>
+      <div class="row" style="margin-top:8px">${meat("",""," ").replace('class="meat','style="width:90px;height:90px;flex:none" class="meat')}<div><span class="tag y">외부 구매기록</span><div style="font-weight:800">한우 등심</div><div class="sub">1kg · 1개</div><div class="red" style="font-weight:800">62,000원</div></div></div>
+      <table style="margin-top:8px"><tr><th>구매처</th><td>○○축산마트</td></tr><tr><th>구매일</th><td>2024-10-18 (금)</td></tr><tr><th>품목</th><td>한우 등심</td></tr><tr><th>수량</th><td>1개</td></tr><tr><th>금액</th><td>62,000원</td></tr></table>
+    </div>
+    <div class="card" style="margin-top:12px"><h3>최근 등록 기록</h3>
+      ${ORDERS_BUYER.map((o,i)=>`<div class="row" style="font-size:11px;padding:4px 0;border-bottom:1px solid var(--line)"><span style="flex:1"><b>${o.name}</b><br><span class="sub">2024.10.${10+i}</span></span><b class="red">${won(o.price)}</b></div>`).join("")}
+    </div>
+  </div>
+</div>
+<div class="note" style="background:#f6f8fb;border-color:var(--line);color:#444">등록 기록은 사피에넷이 검증한 실제 판매정보와 구분해 표시되며, 시연 화면에서는 저장되지 않습니다.</div>`;}
+
+/* ===== S08 내 고기 경제실 ===== */
+function V_analysis(){
+  return `
+${banner("08","내 고기 경제실","구매기록과 시장 흐름을 분석해 더 나은 다음 선택을 돕는 데이터 분석 화면")}
+<div class="row" style="margin-bottom:10px"><span class="pill on">2024년 10월 ▾</span><span class="pill">최근 3개월</span><span class="pill">최근 6개월</span><span class="pill">최근 1년</span><span class="sub">구매기록과 시장 데이터를 기반으로 한 참고용 분석 결과입니다.</span></div>
+<div class="grid four" style="grid-template-columns:repeat(4,1fr)">
+  <div class="stat"><div class="sub">이번 달 구매금액</div><div class="kpi">4,320,000원</div><div class="red" style="font-size:11px">전월 대비 ▲ 8%</div></div>
+  <div class="stat"><div class="sub">이번 달 구매량</div><div class="kpi">287kg</div><div class="green" style="font-size:11px">전월 대비 ▲ 12%</div></div>
+  <div class="stat"><div class="sub">평균 단가</div><div class="kpi">15,040원/kg</div><div class="green" style="font-size:11px">전월 대비 ▼ 6%</div></div>
+  <div class="stat"><div class="sub">절감 추정액</div><div class="kpi red">320,000원</div><div class="sub">동일 품목 시장 평균 대비</div></div>
+</div>
+<div class="grid" style="grid-template-columns:1.2fr 1fr 1.2fr;margin-top:12px">
+  <div class="card"><h3>월별 구매 추이</h3>
+    <div class="chart" style="height:170px">${[["4월",60],["5월",45],["6월",55],["7월",80],["8월",60],["9월",95],["10월",100]].map(([m,v],i)=>`<div><i class="${i===6?"hi":""}" style="height:${v*1.4}px"></i>${m}</div>`).join("")}</div></div>
+  <div class="card"><h3>품목별 구매 비중</h3>
+    <div class="row"><div class="donut" data-c="총 구매금액&#10;4,320,000원" style="background:conic-gradient(#3b82f6 0 38%,#ef4444 0 60%,#f59e0b 0 75%,#14b8a6 0 85%,#fb923c 0 93%,#9ca3af 0 100%);width:150px"></div>
+    <div style="font-size:11px;line-height:2">${[["삼겹살","38%","#3b82f6"],["목살","22%","#ef4444"],["등심","15%","#f59e0b"],["앞다리","10%","#14b8a6"],["갈비","8%","#fb923c"],["기타","7%","#9ca3af"]].map(([a,b,c])=>`<div><span style="color:${c}">●</span> ${a} <b style="float:right;margin-left:14px">${b}</b></div>`).join("")}</div></div></div>
+  <div class="card"><h3>시세 비교 (평균 단가)</h3>
+    <div class="sub">내 구매 단가 vs 시장 평균 단가 · 4~10월</div>
+    <div class="chart" style="height:170px">${[["4",62],["5",60],["6",56],["7",54],["8",55],["9",56],["10",50]].map(([m,v],i)=>`<div><i style="height:${v*2}px;background:${i===6?"var(--blue)":"#c4d6f5"}"></i>${m}월</div>`).join("")}</div></div>
+</div>
+<div class="grid three" style="grid-template-columns:repeat(3,1fr);margin-top:12px">
+  <div class="card"><h3>공급자별 거래 비중</h3>${[["한우명가축산",32,"1,382,000원"],["정직한미트",24,"1,036,000원"],["새한축산",18,"778,000원"],["글로벌푸드",14,"605,000원"],["기타 (5개 업체)",12,"519,000원"]].map(([n,p,a])=>`<div class="row" style="font-size:11px;margin:6px 0"><span style="width:90px">${n}</span><div class="bar"><i style="width:${p*2.5}%"></i></div><span style="width:70px;text-align:right">${p}%</span></div>`).join("")}</div>
+  <div class="card"><h3>AI 추천 인사이트</h3>
+    ${[["삼겹살 추가 구매 추천","최근 3개월간 구매 패턴과 시세를 분석한 결과, 지금 시점에 추가 구매를 고려해볼 수 있습니다."],["다른 공급자 비교 제안","동일 품목의 시장 시세가 하락했습니다. 다른 공급자 조건을 비교해보세요."],["구매 주기 관리 알림","최근 구매 주기(약 28일)를 고려해 다음 주에 재구매를 검토할 시점입니다."]].map(([a,b])=>`<div style="border-bottom:1px solid var(--line);padding:8px 0"><b style="font-size:12px">${a}</b><div class="sub">${b}</div></div>`).join("")}</div>
+  <div class="card"><h3>다음 구매 알림 / 위험 신호</h3>
+    ${[["목살 재구매 알림","마지막 구매일로부터 26일 경과했습니다.","D-2","tag"],["소고기 시세 상승 주의","한우 등심 시세 평균 단가가 최근 2주간 8% 상승했습니다.","주의","tag r"],["조건이 좋은 공급자 업데이트","자주 거래하는 '정직한미트'에서 더 좋은 조건이 등록되었습니다.","신규","tag g"]].map(([a,b,c,k])=>`<div class="row" style="border-bottom:1px solid var(--line);padding:8px 0;align-items:flex-start"><div style="flex:1"><b style="font-size:12px">${a}</b><div class="sub">${b}</div></div><span class="${k}">${c}</span></div>`).join("")}</div>
+</div>
+<div class="note">분석 결과는 구매기록과 시장 데이터를 기반으로 생성된 참고용 정보입니다. (확정된 회계 정보가 아닙니다)</div>`;}
+
+/* ===== S09 공급자실 ===== */
+function V_supplier(){
+  return `
+<div class="row" style="margin-bottom:10px"><span class="pill on" style="background:#14a04f">공급자실</span><span class="sub">공급자가 상품, 재고, 주문, 제안 응답을 관리하는 핵심 화면 (예시)</span></div>
+${banner("09","공급자실","공급자가 상품, 재고, 주문, 제안 응답을 관리하며 거래를 운영하는 핵심 화면")}
+<div class="grid" style="grid-template-columns:1.5fr 1fr 1fr 1fr">
+  <div class="hero" style="min-height:150px;background:linear-gradient(110deg,#0a2a66,#1d4fa8)"><h2 style="font-size:19px">좋은 고기가<br><span style="color:#8fd3a6">좋은 거래를 만듭니다.</span></h2><a class="btn" href="#newproduct" style="width:max-content;background:#14a04f">상품 등록하기 →</a></div>
+  <div class="stat"><div class="sub">등록 상품 수</div><div class="kpi">28개</div><div class="green" style="font-size:11px">▲ 3개 전월 대비</div></div>
+  <div class="stat"><div class="sub">재고 부족 상품</div><div class="kpi red">5개</div><div class="sub">재고 관리가 필요합니다.</div></div>
+  <div class="stat"><div class="sub">오늘 주문</div><div class="kpi">12건</div><div class="green" style="font-size:11px">▲ 4건 어제 대비</div></div>
+</div>
+<div class="grid four" style="grid-template-columns:repeat(4,1fr);margin:12px 0">
+  <a class="card" href="#newproduct"><b>신규 상품 등록</b><div class="sub">새로운 상품을 등록</div></a>
+  <a class="card" href="#supplier"><b>상품 관리</b><div class="sub">상품 수정·관리</div></a>
+  <a class="card" href="#supplier"><b>재고 관리</b><div class="sub">재고 현황 확인</div></a>
+  <a class="card" href="#supplier"><b>주문 관리</b><div class="sub">주문 확인 및 출고 처리</div></a>
+  <a class="card" href="#requests"><b>조건요청 확인</b><div class="sub">구매자 조건요청 응답</div></a>
+</div>
+<div class="grid" style="grid-template-columns:1.5fr 1fr">
+  <div class="card"><div class="row"><h3 style="margin:0">내 상품 목록</h3><span class="sub">총 28개</span><span class="spacer"></span><input placeholder="상품명으로 검색" style="width:200px"></div>
+    <table style="margin-top:8px"><tr><th>상품</th><th>규격/옵션</th><th>가격(원)</th><th>재고</th><th>상태</th><th>등록일</th><th></th></tr>
+      ${[["한우 등심","스테이크용 500g","62,000","48","판매중","2024.10.15"],["한우 국거리","500g","24,900","8","재고부족","2024.10.12"],["한돈 삼겹살","구이용 1kg","18,900","120","판매중","2024.10.10"],["호주산 갈비살","구이용 1kg","28,900","32","판매중","2024.10.08"],["닭가슴살","업소용 2kg","12,900","0","품절","2024.10.05"]].map(r=>`<tr><td>${r[0]}</td><td>${r[1]}</td><td>${r[2]}</td><td>${r[3]}</td><td><span class="tag ${r[4]==="판매중"?"g":"r"}">${r[4]}</span></td><td>${r[5]}</td><td><button class="btn ghost sm">수정</button></td></tr>`).join("")}
+    </table></div>
+  <div class="card"><h3>최근 주문 / 출고 현황</h3>
+    <table><tr><th>주문번호</th><th>상품명</th><th>수량</th><th>상태</th></tr>
+      ${[["OD24010234","한우 등심 500g","5","결제완료"],["OD24010233","한돈 삼겹살 1kg","10","출고준비"],["OD24010232","호주산 갈비살 1kg","3","출고완료"],["OD24010231","한우 국거리 500g","8","출고완료"],["OD24010230","닭가슴살 2kg","6","배송중"]].map(r=>`<tr><td>${r[0]}</td><td>${r[1]}</td><td>${r[2]}</td><td><span class="tag">${r[3]}</span></td></tr>`).join("")}</table>
+    <div class="card" style="margin-top:10px;background:#f7faff"><h3>조건요청 확인 <span class="tag r">신규 3건</span></h3>${REQS.map(r=>`<div class="row" style="font-size:11px;padding:4px 0"><span style="flex:1">${r.title}</span><span class="sub">${r.due}</span></div>`).join("")}<a class="btn ghost sm" href="#requests" style="margin-top:6px">전체보기 ›</a></div>
+  </div>
+</div>
+<div class="grid three" style="grid-template-columns:repeat(3,1fr);margin-top:12px">
+  <div class="card"><h3>판매 요약 (이번 달)</h3><div class="kpi">4,320,000원</div><div class="sub">판매 건수 152건 ▲ 12%</div><div class="sub" style="margin-top:6px">출고 완료 138건 ▲ 15%</div></div>
+  <div class="card"><h3>알림 <span class="tag r">미확인 12건</span></h3><div style="font-size:11px;line-height:2">새로운 조건요청이 도착했습니다. <span class="sub">10.20</span><br>주문 OD24010233 결제가 완료되었습니다. <span class="sub">10.20</span><br>재고가 부족한 상품이 있습니다. <span class="sub">10.18</span></div></div>
+  <div class="card"><h3>내 제안 관리 <span class="tag">진행 4건</span></h3>${["한우 모둠 세트 제안","특가 삼겹살 프로모션","식당 전용 한돈 패키지"].map(t=>`<div class="row" style="font-size:11px;padding:4px 0"><span style="flex:1">${t}</span><span class="sub">검토중</span></div>`).join("")}</div>
+</div>`;}
+
+/* ===== S10 조건 요청 ===== */
+function V_requestNew(){
+  const tab=S.tabs.req||"new";
+  const pm=S.priceMode;
+  return `
+${banner("10","조건 요청","원하는 규격·수량·납기·거래조건을 직접 입력해 새로운 거래를 만드는 요청 화면")}
+<div class="grid three" style="grid-template-columns:repeat(3,1fr);margin-bottom:12px">
+  ${[["new","✏ 새 요청 작성","원하는 조건을 입력해 요청하세요"],["mine","📋 내 요청 내역","내가 등록한 요청과 진행 상황 확인"],["got","📦 받은 제안","공급자가 제안한 상품과 조건 확인"]].map(([k,t,s])=>`<div class="card" onclick="setTab('req','${k}')" style="cursor:pointer;${tab===k?"border-color:var(--blue);background:#eef4ff":""}"><b>${t}</b><div class="sub">${s}</div></div>`).join("")}
+</div>
+${tab==="new"?`
+<div class="grid" style="grid-template-columns:1.6fr 1fr">
+  <div class="card">
+    <h3>조건 요청 작성 <span class="sub">원하는 조건을 입력하면 공급자들이 제안하는 맞춤 상품을 받아볼 수 있습니다.</span></h3>
+    <div class="grid" style="grid-template-columns:1fr 1fr">
+      <div><label class="l">축종 *</label><select><option>선택하세요</option><option>한우</option><option>육우</option><option>돼지</option><option>닭</option></select></div>
+      <div><label class="l">품목 / 부위 *</label><select><option>품목을 선택하세요</option><option>등심</option><option>삼겹살</option></select></div>
+      <div><label class="l">희망 수량 *</label><div class="row"><input placeholder="예: 500" style="flex:1"><select style="width:70px"><option>kg</option></select></div></div>
+      <div><label class="l">희망 예산 또는 단가 *</label><div class="row"><input placeholder="예: 18,000" style="flex:1"><select style="width:80px"><option>원/kg</option></select></div>
+        <div class="row" style="margin-top:6px"><span class="pill ${pm==="price"?"on":""}" onclick="S.priceMode='price';render()">예산으로 요청</span><span class="pill ${pm==="unit"?"on":""}" onclick="S.priceMode='unit';render()">단가로 요청</span></div></div>
+      <div><label class="l">원산지 / 등급</label><div class="row"><select style="flex:1"><option>원산지 선택</option></select><select style="flex:1"><option>등급 선택</option></select></div></div>
+      <div><label class="l">냉장 / 냉동 *</label><div class="row"><span class="pill on">냉장</span><span class="pill">냉동</span><span class="pill">무관</span></div></div>
+      <div><label class="l">납품 희망일 *</label><input type="date" value="2024-10-25"></div>
+      <div><label class="l">배송 / 지역 *</label><div class="row"><select style="flex:1"><option>시·도 선택</option></select><select style="flex:1"><option>시·군·구 선택</option></select></div></div>
+    </div>
+    <label class="l">추가 요청사항</label><textarea rows="3" placeholder="규격, 품질, 거래조건, 기타 요청사항을 자세히 입력해 주세요. (예: 지방함량, 두께, 컷팅 방식, 정산 조건 등)"></textarea>
+    <div class="row" style="margin-top:12px"><button class="btn ghost">미리보기</button><span class="spacer"></span><button class="btn orange" onclick="submitReq()">요청 등록하기 →</button></div>
+  </div>
+  <div class="grid" style="grid-template-columns:1fr;align-content:start">
+    <div class="card"><h3>최근 공급자 제안 예시</h3>
+      ${PRODUCTS.slice(0,3).map(p=>`<div class="row" style="border-bottom:1px solid var(--line);padding:8px 0;align-items:flex-start">${meat(p.cls,"",null).replace('class="meat','style="width:90px;height:70px;flex:none" class="meat')}<div style="flex:1"><span class="tag g">공급자 제안</span><b>${p.name}</b><div class="sub">제안 단가 <span class="red">${won(p.price)}/kg</span> · 가능 수량 1,000kg</div><div class="sub">납품 가능일 2024.10.25 (협의)</div></div><button class="btn ghost sm" onclick="toast('시연용: 제안 상세 흐름만 표시됩니다')">제안 자세히 보기</button></div>`).join("")}
+    </div>
+    <div class="card" style="background:#f7faff"><h3>요청 등록 후 이렇게 진행됩니다</h3><div class="row" style="justify-content:space-between;text-align:center;font-size:11px"><span>📨<br><b>요청 등록</b></span><span>→</span><span>🔔<br><b>공급자 제안</b></span><span>→</span><span>💬<br><b>제안 확인 및 협의</b></span></div></div>
+  </div>
+</div>`:tab==="mine"?`
+<div class="card"><h3>내 요청 내역</h3><table><tr><th>요청번호</th><th>요청 내용</th><th>마감</th><th>상태</th><th>제안</th><th></th></tr>
+${REQS.map(r=>`<tr><td>${r.id}</td><td>${r.title}</td><td>${r.due}</td><td><span class="tag ${r.status.includes("대기")||r.status.includes("응답")?"":"o"}">${r.status}</span></td><td>${r.offers}건</td><td><a class="btn ghost sm" href="#requestDetail/${r.id}">상세 보기</a></td></tr>`).join("")}</table></div>`
+:`<div class="card"><h3>받은 제안</h3>${REQS.map(r=>`<div class="row" style="border-bottom:1px solid var(--line);padding:8px 0"><span style="flex:1"><b>${r.title}</b><div class="sub">제안 ${r.offers}건 도착</div></span><a class="btn sm" href="#requestDetail/${r.id}">제안 비교하기</a></div>`).join("")}</div>`}
+`;}
+function submitReq(){toast("조건 요청이 등록된 것으로 표시됩니다 (시연 · 저장 안 됨)");setTimeout(()=>go("requests"),400);}
+
+/* ===== S11 거래 제안 광장 ===== */
+function V_requests(){
+  const rows=[
+    {t:"한우 동심 2cm 슬라이스 납품 요청",tags:["한우","통등","냉장"],type:"구매자 요청",cls:"",qty:"500kg",price:"희망 2cm 슬라이스 등급 1++ 이상",due:"2024. 10. 28 (월)",area:"서울·경기",st:"모집중",like:24,cmt:8,btn:"제안 보기"},
+    {t:"삼겹살 대량 납품 가능 (월 5톤)",tags:["한돈","삼겹살","냉장"],type:"공급자 제안",cls:"b",qty:"5,000kg",price:"18,500원/kg",due:"즉시 출고",area:"전국",st:"진행중",like:17,cmt:12,btn:"상담 참여"},
+    {t:"식당용 소고기 정육 세트 구매",tags:["한우","정육","냉장"],type:"구매자 요청",cls:"c",qty:"200kg",price:"희망 거래 조건 손질 부위별 구성",due:"2024. 11. 5 (화)",area:"부산·경남",st:"모집중",like:31,cmt:6,btn:"제안 보기"},
+    {t:"냉동 LA갈비 대량 공급합니다",tags:["수입육","갈비","냉동"],type:"공급자 제안",cls:"d",qty:"1,000kg",price:"28,000원/kg",due:"즉시 출고",area:"전국",st:"상담중",like:9,cmt:4,btn:"조건 비교"},
+    {t:"프리미엄 한우 선물세트 신규 출시",tags:["한우","선물세트","냉장"],type:"신상품 제안",cls:"",qty:"100세트",price:"120,000원/세트",due:"2024. 11. 1 (금)",area:"전국",st:"모집중",like:28,cmt:10,btn:"제안 보기"}
+  ];
+  const top=[["한우 동심 2cm 납품","62,000원/1kg","구매자 요청"],["삼겹살 대량 납품 가능","18,500원/1kg","공급자 제안"],["식당용 소고기 정육 세트","24,000원/1kg","구매자 요청"],["냉동 LA갈비 대량 공급","28,000원/1kg","공급자 제안"],["프리미엄 한우 선물세트","120,000원/세트","신상품 제안"]];
+  return `
+${banner("11","거래 제안 광장","구매자와 공급자의 제안을 모아 새로운 거래 기회를 발견하고 연결하는 제안 탐색 화면")}
+<div class="grid" style="grid-template-columns:1.9fr 1fr;margin-bottom:12px">
+  <div class="hero" style="min-height:190px"><div class="sub" style="color:#cfe2ff">거래 제안 광장</div><h2>다양한 제안을 만나<br>새로운 거래 기회를 발견하세요.</h2><div class="row"><a class="btn orange" href="#requestNew">제안 등록하기 →</a><a class="btn" href="#requests" style="background:#fff;color:var(--navy)">관심 제안 둘러보기 →</a></div></div>
+  <div class="card"><h3>인기 제안 TOP 5</h3><div class="grid" style="grid-template-columns:repeat(5,1fr)">${top.map(([a,b,c],i)=>`<div><div class="meat ${["","b","c","d",""][i]}" style="height:70px;aspect-ratio:auto;font-size:9px">${i+1}</div><div style="font-weight:700;font-size:10px;margin-top:4px">${a}</div><div class="red" style="font-size:10px">${b}</div><span class="tag" style="font-size:9px">${c}</span></div>`).join("")}</div></div>
+</div>
+<div class="grid" style="grid-template-columns:230px 1fr">
+  <div class="card" style="align-self:start">
+    <h3>제안 검색 및 필터</h3>
+    <label class="l">축종</label><select><option>전체</option></select>
+    <label class="l">부위</label><select><option>전체</option></select>
+    <label class="l">거래유형</label>
+    <div style="font-size:12px;line-height:2"><input type="checkbox" checked> 전체<br><input type="checkbox"> 구매자 요청<br><input type="checkbox"> 공급자 제안<br><input type="checkbox"> 신상품 제안</div>
+    <label class="l">거래조건</label><select><option>전체</option></select>
+    <label class="l">납기 희망일</label><select><option>전체</option></select>
+    <label class="l">지역</label><select><option>전체</option></select>
+    <button class="btn" style="width:100%;margin-top:10px">🔍 검색하기</button>
+    <div class="card" style="margin-top:12px;padding:10px"><b style="font-size:12px">최근 활동 내역</b>${["A식품이 내 제안에 관심을 보였습니다.","B유통이 조건 비교를 요청했습니다.","C마트가 새로운 제안을 등록했습니다."].map((t,i)=>`<div class="sub" style="margin-top:6px">${t} <span style="float:right">${["10분 전","28분 전","1시간 전"][i]}</span></div>`).join("")}</div>
+  </div>
+  <div>
+    <div class="row" style="margin-bottom:8px">${[["전체 (152)",1],["구매자 요청 (64)",0],["공급자 제안 (56)",0],["신상품 제안 (22)",0],["진행중 (22)",0]].map(([t,on])=>`<span class="pill ${on?"on":""}">${t}</span>`).join("")}<span class="spacer"></span><select style="width:auto"><option>최신순</option></select></div>
+    ${rows.map(r=>`<div class="card row" style="padding:10px;margin-bottom:8px;flex-wrap:nowrap;align-items:center">
+      ${meat(r.cls,"",null).replace('class="meat','style="width:110px;height:80px;flex:none" class="meat')}
+      <div style="flex:1;min-width:0"><div class="row" style="gap:6px"><span class="tag ${r.type==="구매자 요청"?"r":r.type==="신상품 제안"?"":"g"}">${r.type}</span><b>${r.t}</b></div>
+        <div class="sub">${r.tags.map(t=>`<span class="tag">${t}</span>`).join("")}</div></div>
+      <div style="width:90px;font-size:11px"><div class="sub">요청 수량</div><b>${r.qty}</b></div>
+      <div style="width:150px;font-size:11px"><div class="sub">제안 가격</div><b class="red">${r.price}</b></div>
+      <div style="width:90px;font-size:11px"><div class="sub">가능 납기</div><b>${r.due}</b></div>
+      <div style="width:70px;font-size:11px"><div class="sub">거래 지역</div><b>${r.area}</b></div>
+      <div style="width:70px;text-align:center"><span class="tag ${r.st==="진행중"?"":"g"}">${r.st}</span><div class="sub">♥ ${r.like} 💬 ${r.cmt}</div></div>
+      <button class="btn sm" style="min-width:86px" onclick="go('requestDetail/R-101')">${r.btn}</button>
+    </div>`).join("")}
+  </div>
+</div>`;}
+
+/* ===== S12 협의 · 최종확인 ===== */
+function V_requestDetail(id){
+  const r=REQS.find(x=>x.id===id)||REQS[0];
+  const picked=S.reqPicked;
+  const offers=[
+    {k:"A",name:"사피에넷축산",rate:"4.8",cnt:"1,203",deal:"428건",price:"58,000원",qty:"100kg (요청 수량 충족)",pack:"진공포장 1kg 단위",origin:"국내산 한우",grade:"1++ / 1+ 혼합 제공",cold:"당일 발주, 냉장(0~5°C)",eta:"2024. 10. 24 (목)",pay:"세금계산서 (월말 30일)",etc:"품질증명서, 이력번호",best:true},
+    {k:"B",name:"한우명가",rate:"4.6",cnt:"856",deal:"312건",price:"62,000원",qty:"100kg (요청 수량 충족)",pack:"진공포장 1kg 단위",origin:"국내산 한우",grade:"1+ 이상",cold:"당일 도축, 냉장(0~5°C)",eta:"2024. 10. 25 (금)",pay:"세금계산서 (월말 30일)",etc:"품질증명서, 도축증명서",best:false},
+    {k:"C",name:"미트프라임",rate:"4.7",cnt:"952",deal:"312건",price:"56,000원",qty:"100kg (요청 수량 충족)",pack:"MAP 진공포장 1kg 단위",origin:"국내산 한우 (1등급 이상)",grade:"1+ 이상",cold:"냉장(0~5°C), 선도 유지",eta:"2024. 10. 24 (목)",pay:"세금계산서 (월말 30일)",etc:"이력번호, 품질보증서",best:false}
+  ];
+  const sel=offers.find(o=>o.k===picked)||offers[0];
+  return `
+<div class="sub" style="margin-bottom:6px">홈 › 조건요청 › 협의 · 최종확인 (S12)</div>
+${banner("12","협의 · 최종확인","제안된 조건을 비교하고 대화하며 최종 거래 조건을 확정하는 협의 화면")}
+${steps(["요청접수","제안비교","조건협의","최종확인","주문완료"],2)}
+<div class="grid" style="grid-template-columns:1fr 1.7fr 1fr">
+  <div class="card"><div class="row"><h3 style="margin:0">구매자 요청 정보</h3><span class="spacer"></span><button class="btn ghost sm">수정</button></div>
+    <div class="meat" style="aspect-ratio:4/3;margin:8px 0"></div>
+    <table><tr><th>상품</th><td>${r.title.split(" ").slice(0,2).join(" ")}</td></tr><tr><th>요청 수량</th><td class="red"><b>${r.qty}</b></td></tr><tr><th>희망 단가</th><td class="red"><b>${r.price}</b></td></tr><tr><th>품질 등급</th><td>1+ 이상</td></tr><tr><th>포장 방식</th><td>진공포장 1kg 단위</td></tr><tr><th>납품 희망일</th><td>${r.due}</td></tr><tr><th>배송 지역</th><td>서울특별시 강남구 전체</td></tr><tr><th>결제 조건</th><td>세금계산서 (월말 30일)</td></tr></table>
+    <div class="sub" style="margin-top:8px"><b>기타 요청 사항</b><br>· 신선한 상품으로 요청<br>· 지방 함량이 적당한 등급<br>· 이력번호와 품질증명서 제공</div>
+  </div>
+  <div>
+    <div class="card"><div class="row"><h3 style="margin:0">공급자 제안 비교</h3><span class="sub">총 3개의 제안이 있습니다.</span><span class="spacer"></span><select style="width:auto"><option>추천순</option></select></div>
+      <div class="grid" style="grid-template-columns:repeat(3,1fr);margin-top:8px">${offers.map(o=>`<div class="card" style="padding:10px;${o.k===sel.k?"border:2px solid var(--blue)":""}">
+        <div class="row"><span class="tag" style="background:var(--blue);color:#fff">${o.k}안</span>${o.best?'<span class="tag o">추천</span>':""}</div>
+        <div style="font-weight:800;margin-top:4px">${o.name}</div><div class="sub">★ ${o.rate} (${o.cnt}) · 거래 ${o.deal}</div>
+        <div class="red" style="font-weight:900;font-size:16px;margin:6px 0">${o.price} <span class="sub" style="font-size:10px">/ 1kg</span></div>
+        <table style="font-size:10px">${[["제안 수량",o.qty],["포장 방식",o.pack],["원산지",o.origin],["품질 등급",o.grade],["신선도·보관",o.cold],["배송 예정일",o.eta],["결제 조건",o.pay],["기타 조건",o.etc]].map(([a,b])=>`<tr><th style="width:70px;padding:4px;font-size:10px">${a}</th><td style="padding:4px;font-size:10px">${b}</td></tr>`).join("")}</table>
+        <div class="row" style="margin-top:6px"><button class="btn ghost sm" onclick="toast('시연용: 수정 제안 흐름만 표시됩니다')">수정 제안</button><button class="btn sm" onclick="S.reqPicked='${o.k}';render()">${o.k===sel.k?"선택됨":"선택하기"}</button></div>
+      </div>`).join("")}</div>
+    </div>
+    <div class="card" style="margin-top:12px"><h3>최종 선택된 제안 정보 <span class="tag g">선택된 제안</span></h3>
+      <table><tr><th>공급자</th><th>최종 단가</th><th>최종 수량</th><th>포장 방식</th><th>배송 예정일</th><th>결제 조건</th></tr>
+      <tr><td><b>${sel.name}</b> ★${sel.rate}</td><td class="red"><b>${sel.price}/1kg</b></td><td>100kg</td><td>${sel.pack}</td><td>${sel.eta}</td><td>${sel.pay}</td></tr></table>
+      <div class="row" style="margin-top:10px"><button class="btn ghost">견적서 보기</button><button class="btn ghost">조건 다시 협의하기</button><span class="spacer"></span>${dis("🛒 최종 주문하기")}</div>
+      <div class="note">최종 합의와 주문 전환은 시연에서 동작하지 않습니다.</div>
+    </div>
+  </div>
+  <div class="card"><h3>협의 대화 내용</h3>
+    ${[["구매자","안녕하세요. 제안해주신 단가가 58,000원 인데, 100kg 기준으로 추가 할인 가능할까요?","14:32",0],["공급자","안녕하세요. 100kg 이상 주문 시 56,000원까지 조정 가능합니다. 품질은 등심 1++ / 1+ 혼합 제공됩니다.","14:38",1],["구매자","좋습니다. 납품일을 10월 25일(금)로 지정할 수 있을까요? 세금계산서 발행도 가능한지 확인 부탁드립니다.","14:45",0],["공급자","네, 10월 25일(금) 납품 가능합니다. 세금계산서 발행도 가능하며, 이력번호와 품질증명서도 함께 제공드립니다.","14:50",1],["구매자","네, 그 조건으로 진행하겠습니다. 최종 주문 전에 견적서를 먼저 보내주세요.","14:52",0]].map(([w,t,tm,s])=>`<div style="margin-bottom:10px"><div class="sub">${w} · ${tm}</div><div style="background:${s?"#e9f2ff":"#f4f5f8"};border-radius:8px;padding:8px;font-size:11px;line-height:1.5">${t}</div></div>`).join("")}
+    <div class="row"><input placeholder="메시지를 입력하세요." style="flex:1"><button class="btn sm" onclick="toast('시연용: 메시지 저장 안 됨')">전송</button></div>
+  </div>
+</div>`;}
+
+/* ===== S13 신상품 제안 · 개발 ===== */
+function V_newproduct(){
+  const cards=[
+    {st:"검토 중",cls:"",stc:"y",name:"한우 숙성 스테이크용 세트",desc:"드라이에이징 한우로 구성한 프리미엄 스테이크 세트 제안입니다.",maker:"구매자 (일반회원)",target:"프리미엄 소비자, 선물용",core:"숙성 한우 + 전용 소스 구성",use:"가정용, 선물세트",people:28,cmt:18,like:10,btn:"상세 보기"},
+    {st:"개발 진행 중",cls:"b",stc:"",name:"캠핑용 두꺼운 삼겹살 컷",desc:"캠핑 및 야외용으로 적합한 두꺼운 규격의 삼겹살 컷 상품을 제안합니다.",maker:"공급자 (사업자)",target:"캠핑족, 야외 소비자",core:"두꺼운 컷(2cm) + 소포장",use:"캠핑, 야외 바비큐용",people:36,cmt:24,like:12,btn:"상세 보기"},
+    {st:"공급 협의 중",cls:"c",stc:"",name:"간편 양념 소불고기 밀키트",desc:"신선한 소불고기와 특제 양념 소스를 함께 구성한 간편 조리 밀키트입니다.",maker:"구매자 (사업자)",target:"가정용, 간편식 수요층",core:"고기 + 양념 + 레시피 구성",use:"가정용, 캠핑, 밀키트",people:42,cmt:31,like:11,btn:"상세 보기"},
+    {st:"출시 완료",cls:"d",stc:"g",name:"한우 특수부위 모듬 세트",desc:"소비자 요청으로 개발된 특수부위 모듬 세트를 정식 상품으로 출시했습니다.",maker:"공급자 (사업자)",target:"프리미엄 고객, 선물용",core:"특수부위 모듬 + 고급 패키징",use:"선물세트, 프리미엄 가정식",people:56,cmt:40,like:16,btn:"상품 상세 보기"}
+  ];
+  return `
+${banner("13","신상품 제안 · 개발","새로운 상품 아이디어를 제안하고 검토하여 실제 판매 상품으로 발전시키는 기획 화면")}
+<div class="grid" style="grid-template-columns:1.2fr 1fr;margin-bottom:12px">
+  <div class="hero" style="min-height:230px"><div class="sub" style="color:#cfe2ff">SAPIENET MEAT</div><h2>당신의 아이디어가<br><span style="color:#8fd3a6">새로운 고기 상품이 됩니다.</span></h2><div style="margin-bottom:12px">좋은 아이디어가 더 좋은 고기 거래를 만듭니다. 지금, 신상품 제안에 참여해보세요.</div><div class="row"><button class="btn orange">신상품 아이디어 제안하기 →</button><button class="btn" style="background:transparent;border:1px solid #fff">개발 진행 상황 보기 →</button></div></div>
+  <div class="card"><h3>💡 신상품 제안 등록하기</h3>
+    <div class="grid" style="grid-template-columns:1fr 1fr">
+      <div><label class="l">상품명 *</label><input placeholder="예: 한우 숙성 스테이크용 세트"></div>
+      <div><label class="l">규격 / 중량</label><input placeholder="예: 500g, 1kg, 세트 구성 등"></div>
+      <div><label class="l">대상 고객 *</label><select><option>선택해주세요</option><option>일반 소비자</option><option>사업자</option></select></div>
+      <div><label class="l">예상 가격대</label><select><option>선택해주세요</option></select></div>
+    </div>
+    <label class="l">구성 아이디어 *</label><textarea rows="3" placeholder="어떤 상품인가요? (부위, 구성, 차별점 등을 간단히 작성해 주세요)"></textarea>
+    <div class="row" style="margin-top:10px"><button class="btn ghost sm">임시저장</button><span class="spacer"></span><button class="btn orange" onclick="toast('시연용: 제안이 접수된 것으로 표시됩니다 (검토 대기)')">제안 등록하기 →</button></div>
+  </div>
+</div>
+<div class="grid four" style="grid-template-columns:repeat(4,1fr)">
+  ${cards.map(c=>`<div class="card" style="padding:10px"><div class="row"><b>${c.st==="검토 중"?"① 검토 중 제안":c.st==="개발 진행 중"?"② 개발 진행 중 제안":c.st==="공급 협의 중"?"③ 공급 협의 중 제안":"④ 출시 완료 상품"}</b><span class="spacer"></span><span class="tag ${c.stc}">${c.st}</span></div>
+    ${meat(c.cls,"",null).replace('class="meat','style="height:110px;margin:8px 0" class="meat')}
+    <b>${c.name}</b><div class="sub" style="margin:4px 0 8px">${c.desc}</div>
+    <div style="font-size:11px;line-height:1.8">제안자 ${c.maker}<br>대상 고객 ${c.target}<br>핵심 컨셉 ${c.core}<br>예상 용도 ${c.use}<br><span class="sub">참여자 <b>${c.people}명</b> · 댓글 ${c.cmt} · 관심 ${c.like}</span></div>
+    <button class="btn ghost sm" style="width:100%;margin-top:8px" onclick="toast('시연용: 상세 흐름만 표시됩니다')">${c.btn}</button>
+  </div>`).join("")}
+</div>`;}
+
+/* ===== S14 참여 · 권리 · 보상 ===== */
+function V_rights(){
+  const tab=S.tabs.rt||"join";
+  const rows=[
+    ["프리미엄 한우 숙성 스테이크팩","아이디어 제안","검토 중","2024.10.20","-"],
+    ["한우 등심 쇼핑백 500g","아이디어 제안","체택 완료","2024.10.14","예상 보상 200,000원"],
+    ["한돈 시장 의견 캠핑 세트","시장 의견 제공","개발 진행","2024.10.10","예상 보상 100,000원"],
+    ["닭가슴살 간편 조리 제품","아이디어 제안","검토 중","2024.10.05","-"],
+    ["한우 불고기 양념육 제품","개발 의견 제공","개발 진행","2024.09.28","예상 보상 50,000원"],
+    ["드라이에이징 한우 스테이크","데이터 제공","출시 준비","2024.09.15","예상 보상 -"]
+  ];
+  return `
+${banner("14","참여 · 권리 · 보상","제안 참여 내역과 기여 기록을 확인하고 권리·혜택·보상 가능성을 관리하는 화면")}
+<div class="grid" style="grid-template-columns:1.6fr 1fr;margin-bottom:12px">
+  <div class="hero" style="min-height:190px;background:linear-gradient(110deg,#0a2a66,#2a6bd0)"><div class="sub" style="color:#cfe2ff">SAPIENET MEAT</div><h2>당신의 참여가<br>새로운 고기 상품을<br>만듭니다.</h2><div class="row"><a class="btn" href="#newproduct">새로운 제안하기 →</a><a class="btn" href="#requests" style="background:#fff;color:var(--navy)">내 제안 관리하기</a></div></div>
+  <div class="card"><h3>최근 알림</h3><div style="font-size:11px;line-height:2.2">● 내 제안이 검토 중으로 변경되었습니다. <span class="sub">10.20 14:30</span><br>● 개발 참여 요청이 도착했습니다. <span class="sub">10.18 09:12</span><br>● 보상 지급 일정이 등록되었습니다. <span class="sub">10.16 16:25</span><br>● 제안이 채택되어 개발이 시작되었습니다. <span class="sub">10.14 11:03</span></div></div>
+</div>
+<div class="grid four" style="grid-template-columns:repeat(4,1fr);margin-bottom:12px">
+  <div class="stat"><div class="sub">총 참여 건수</div><div class="kpi">12건</div><div class="red" style="font-size:11px">전월 대비 ▲ 3건</div></div>
+  <div class="stat"><div class="sub">채택된 제안</div><div class="kpi green">3건</div><div class="sub">채택률 25%</div></div>
+  <div class="stat"><div class="sub">진행 중 개발</div><div class="kpi o" style="color:var(--orange)">4건</div><div class="sub">개발 참여 중</div></div>
+  <div class="stat"><div class="sub">보상 지급 예정</div><div class="kpi red">2건</div><div class="sub">350,000원 (예상 금액, 개발 기준)</div></div>
+</div>
+<div class="card">
+  <div class="row" style="margin-bottom:8px">${[["join","참여한 제안 (12)"],["ok","채택된 제안 (3)"],["dev","개발 참여 (4)"],["rew","보상 내역 (2)"],["rec","나의 권리 기록 (5)"]].map(([k,l])=>`<span class="pill ${tab===k?"on":""}" onclick="setTab('rt','${k}')">${l}</span>`).join("")}<span class="spacer"></span><input placeholder="제안명 또는 키워드로 검색하세요." style="width:240px"><button class="btn sm">+ 새로운 제안하기</button></div>
+  <table><tr><th>상품 이미지</th><th>제안 / 상품명</th><th>나의 역할</th><th>제안 단계</th><th>등록일</th><th>현재 상태</th><th>예상 혜택 / 보상</th><th></th></tr>
+    ${rows.map(r=>`<tr><td><div class="meat" style="width:60px;height:44px;aspect-ratio:auto"></div></td><td><b>${r[0]}</b></td><td><span class="tag">${r[1]}</span></td><td>${r[2]}</td><td>${r[3]}</td><td><span class="tag ${r[2]==="출시 준비"?"":"g"}">${r[2]}</span></td><td class="red">${r[4]}</td><td><button class="btn ghost sm">상세 보기</button></td></tr>`).join("")}
+  </table>
+  <div class="note" style="background:#f6f8fb;border-color:var(--line);color:#444">보상과 권리는 별도의 계약과 정책에 따라 달라지며, 참여만으로 법적 권리가 자동 보장되지 않습니다. 시연 화면의 금액은 예시입니다.</div>
+</div>`;}
+
+/* ===== 고객센터 ===== */
+function V_help(){return `
+${banner("–","고객센터","자주 찾는 질문과 문의 흐름을 확인하는 화면 (시연)")}
+<div class="grid three" style="grid-template-columns:repeat(3,1fr)">
+  <div class="card"><h3>자주 묻는 질문</h3><div class="sub">주문·배송·조건 요청 안내</div></div>
+  <div class="card"><h3>1:1 문의</h3><div class="sub">문의 접수 흐름 (시연)</div><button class="btn" style="margin-top:8px" disabled title="시연용">문의 보내기 (시연 제외)</button></div>
+  <div class="card"><h3>운영 정책 안내</h3><div class="sub">결제·환불·정산 정책은 준비 중입니다.</div></div>
+</div>`;}
+
+/* ===== 라우터 ===== */
+const VIEWS = {home:V_home,products:V_products,product:V_product,cart:V_cart,mypage:V_mypage,business:V_business,external:V_external,analysis:V_analysis,supplier:V_supplier,requestNew:V_requestNew,requests:V_requests,requestDetail:V_requestDetail,newproduct:V_newproduct,rights:V_rights,help:V_help};
+function render(){
+  const [route,arg]=(location.hash||"#home").slice(1).split("/");
+  const fn=VIEWS[route]||V_home;
+  renderChrome(VIEWS[route]?route:"home");
+  $("app").innerHTML=fn(arg);
+  window.scrollTo(0,0);
+}
+window.addEventListener("hashchange",render);
+$("q").addEventListener("keydown",e=>{if(e.key==="Enter")go("products");});
+render();
+</script>
+</body>
+</html>
